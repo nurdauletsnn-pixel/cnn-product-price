@@ -307,7 +307,8 @@ def render_sidebar():
 
         available = get_available_models()
         if not available:
-            st.error("No models found."); return None, None, page
+            st.error("No models found.")
+            return "ensemble_tta", "resnet50", page
 
         best_txt = MODELS_DIR / "best_model_name.txt"
         default  = best_txt.read_text().strip() if best_txt.exists() else available[0]
@@ -365,8 +366,7 @@ def render_hero(mode, selected_model):
         "tta":          (f"{labels.get(selected_model, selected_model)} + TTA ×8", "#e3b341"),
         "ensemble_tta": ("Ensemble 5 CNNs + TTA ×8", "#56d364"),
     }
-    mlabel, mcolor = mode_labels[mode]
-    st.markdown(f"""
+    mlabel, mcolor = mode_labels.get(mode, ("Unknown mode", "#8b949e"))    st.markdown(f"""
     <div class="hero">
       <div class="hero-title">🛒 <span>CNN Product Recognition</span> & Price Estimation</div>
       <div class="hero-sub">Upload product photos → AI identifies each item → Calculates total cost</div>
