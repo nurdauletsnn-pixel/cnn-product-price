@@ -674,8 +674,6 @@ def page_metrics():
 # MAIN
 # ─────────────────────────────────────────────────────────────────────────────
 def main():
-    with st.spinner("⬇️ Checking model weights..."):
-        init_weights()
     inference_mode, selected_model, page = render_sidebar()
     render_hero(inference_mode, selected_model)
     if page == " 1. PREDICTION & PRICE":
