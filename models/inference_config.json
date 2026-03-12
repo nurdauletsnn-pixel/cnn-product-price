@@ -1,0 +1,12 @@
+{
+  "inference_mode": "ensemble_tta",
+  "model_weights": {
+    "resnet50": 0.4,
+    "vgg16": 0.25,
+    "googlenet": 0.15,
+    "alexnet": 0.1,
+    "efficientnet_b0": 0.1
+  },
+  "tta_count": 8,
+  "description": "Ensemble of 5 CNNs with 8x TTA each"
+}

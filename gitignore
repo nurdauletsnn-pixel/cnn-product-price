@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.Python
+*.egg-info/
+dist/
+build/
+models/**/*.pth 
+# Virtual environments
+venv/
+env/
+.env
+
+# Model weights (too large for GitHub — upload to Google Drive)
+models/*/best_model.pth
+models/*/checkpoint.pth
+
+# Dataset (large files)
+dataset/train/
+dataset/val/
+dataset/test/
+
+# Keep these in repo:
+!models/all_metrics.json
+!models/best_model_name.txt
+!models/comparison.png
+!models/*/confusion_matrix.png
+!models/*/training_curves.png
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
