@@ -14,6 +14,16 @@ import torch.nn as nn
 from PIL import Image
 from torchvision import models, transforms
 
+
+# ── Auto-download weights from Google Drive if missing ────────────────────
+@st.cache_resource(show_spinner=False)
+def init_weights():
+    try:
+        from download_weights import ensure_weights
+        return ensure_weights()
+    except Exception:
+        return False
+
 MODELS_DIR    = Path("models")
 PRICE_DB_PATH = Path("price_database.json")
 IMG_SIZE      = 224
@@ -664,6 +674,8 @@ def page_metrics():
 # MAIN
 # ─────────────────────────────────────────────────────────────────────────────
 def main():
+    with st.spinner("⬇️ Checking model weights..."):
+        init_weights()
     inference_mode, selected_model, page = render_sidebar()
     render_hero(inference_mode, selected_model)
     if page == " 1. PREDICTION & PRICE":
